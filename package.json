@@ -1,6 +1,6 @@
 {
   "name": "add-fields",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tool to automatically add @Field decorators to TypeScript classes with @ObjectType, @InputType, and @ArgsType decorators.",
   "main": "index.js",
   "bin": {
@@ -10,7 +10,15 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@git@github.com:Ancss/add-fields.git"
+  },
+  "keywords": [
+    "graphql",
+    "nestjs",
+    "typescript"
+  ],
   "author": "Ancss",
   "license": "ISC",
   "dependencies": {
