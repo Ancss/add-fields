@@ -19,6 +19,8 @@ class CreateUserInput {
   password: string;
   account: Account;
   orders?: Order[];
+  scores: number[];
+  isAdmin: boolean;
 }
 ```
 
@@ -45,5 +47,9 @@ class CreateUserInput {
   account: Account;
   @Field(() => [Order], { nullable: true })
   orders?: Order[];
+  @Field(() => [Number])
+  scores: number[];
+  @Field()
+  isAdmin: boolean;
 }
 ```

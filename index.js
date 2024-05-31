@@ -37,13 +37,19 @@ function start() {
         if (isArray) {
           typeText = typeText.slice(0, -2);
         }
-
+        console.log(isArray, typeText);
         property.addDecorator({
           name: "Field",
           arguments: [
-            isBasicType(typeText)
+            isArray
+              ? isBasicType(typeText)
+                ? `() => [${
+                    typeText.slice(0, 1).toUpperCase() + typeText.slice(1)
+                  }]`
+                : `() => [${typeText}]`
+              : isBasicType(typeText)
               ? ""
-              : `() => ${isArray ? `[${typeText}]` : typeText}`,
+              : `() => ${typeText}`,
             isOptional ? "{ nullable: true }" : "",
           ]
             .filter(Boolean)
@@ -53,10 +59,10 @@ function start() {
     });
   });
 }
+
 const isBasicType = (typeText) => {
-  return ["string", "number", "boolean", "null", "undefined"].includes(
-    typeText
-  );
+  return ["string", "number", "boolean"].includes(typeText);
 };
+
 start();
 project.saveSync();

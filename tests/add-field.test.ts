@@ -44,6 +44,8 @@ describe("add-field script", () => {
         password: string;
         account: Account;
         orders?: Order[];
+        scores: number[];
+        isAdmin: boolean;
       }
     `;
 
@@ -77,9 +79,15 @@ describe("add-field script", () => {
         property.addDecorator({
           name: "Field",
           arguments: [
-            isBasicType(typeText)
+            isArray
+              ? isBasicType(typeText)
+                ? `() => [${
+                    typeText.slice(0, 1).toUpperCase() + typeText.slice(1)
+                  }]`
+                : `() => [${typeText}]`
+              : isBasicType(typeText)
               ? ""
-              : `() => ${isArray ? `[${typeText}]` : typeText}`,
+              : `() => ${typeText}`,
             isOptional ? "{ nullable: true }" : "",
           ].filter(Boolean),
         });
@@ -114,6 +122,10 @@ describe("add-field script", () => {
         account: Account;
         @Field(() => [Order], { nullable: true })
         orders?: Order[];
+        @Field(() => [Number])
+        scores: number[];
+        @Field()
+        isAdmin: boolean;
       }`);
   });
 });
