@@ -6,6 +6,44 @@ A tool to automatically add `@Field` decorators to TypeScript classes with `@Obj
 
 You can use this tool directly with `npx`:
 
+## Example
+
+Given the following class:
+
+```typescript
+@InputType()
+class CreateUserInput {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  account: Account;
+  orders?: Order[];
+}
+```
+
+After running the tool:
+
 ```bash
 npx add-field src/**/*.ts
+```
+
+The class will be transformed into:
+
+```typescript
+@InputType()
+class CreateUserInput {
+  @Field()
+  id: number;
+  @Field()
+  name: string;
+  @Field()
+  email: string;
+  @Field()
+  password: string;
+  @Field(() => Account)
+  account: Account;
+  @Field(() => [Order], { nullable: true })
+  orders?: Order[];
+}
 ```
