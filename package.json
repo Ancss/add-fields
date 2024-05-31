@@ -1,0 +1,19 @@
+{
+  "name": "add-fields",
+  "version": "1.0.0",
+  "description": "A tool to automatically add @Field decorators to TypeScript classes with @ObjectType, @InputType, and @ArgsType decorators.",
+  "main": "index.js",
+  "bin": {
+    "add-field": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ancss",
+  "license": "ISC",
+  "dependencies": {
+    "ts-morph": "^22.0.0",
+    "typescript": "^5.4.5"
+  }
+}
